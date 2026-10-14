@@ -127,7 +127,22 @@ section{padding:clamp(3.2rem,8vw,5.5rem) 0}
 .nota svg{width:16px;height:16px;color:var(--oro-texto);flex:none}
 .foto{position:relative;width:100%;max-width:440px;justify-self:center;isolation:isolate}
 .foto::before{content:"";position:absolute;inset:16px -12px -12px 16px;border:2px solid var(--oro);border-radius:24px;z-index:-1}
-.foto>picture,.foto>picture img{border-radius:22px;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;box-shadow:var(--sombra);background:var(--crema)}
+/* Tarjeta que gira: foto delante, RE/MAX detrás */
+.flip{perspective:1400px}
+.flipbtn{display:block;width:100%;aspect-ratio:4/5;position:relative;padding:0;border-radius:22px}
+.fi{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .9s var(--ease)}
+.flipbtn[aria-pressed=true] .fi{transform:rotateY(180deg)}
+@media(hover:hover) and (pointer:fine){.flipbtn:hover .fi{transform:rotateY(180deg)}}
+.cara{position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;border-radius:22px;overflow:hidden;box-shadow:var(--sombra)}
+.cara.frente{background:var(--crema)}
+.cara.frente img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;transform:scale(1.08);will-change:transform}
+.cara.dorso{transform:rotateY(180deg);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:1.6rem;text-align:center;border:1px solid var(--linea)}
+.cara.dorso img{width:78%;height:auto}
+.cara.dorso strong{font:800 1.3rem/1.2 var(--display);color:var(--tinta);letter-spacing:-.02em}
+.cara.dorso em{font-style:normal;font-size:.9rem;font-weight:600;color:var(--suave);line-height:1.5}
+.girar{position:absolute;top:.8rem;right:.8rem;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.94);display:grid;place-items:center;color:var(--vino);box-shadow:0 6px 16px -6px rgba(0,0,0,.4);animation:girar 5s ease-in-out 2.5s infinite}
+.girar svg{width:20px;height:20px}
+@keyframes girar{0%,72%,100%{transform:rotate(0)}86%{transform:rotate(360deg)}}
 .sello{position:absolute;left:-.6rem;bottom:1.2rem;display:flex;align-items:center;gap:.75rem;background:#fff;border-radius:14px;padding:.7rem .95rem .7rem .7rem;box-shadow:0 18px 40px -16px rgba(40,10,12,.45);max-width:calc(100% - 1rem)}
 .sello img{width:72px;height:auto;border-radius:6px}
 .sello strong{display:block;font:800 .98rem/1.2 var(--display);color:var(--tinta);letter-spacing:-.01em}
@@ -294,6 +309,63 @@ dialog.hoja.cerrando::backdrop{animation:fundir .32s ease reverse both}
 .ok .btn{width:100%;margin-top:.6rem}
 @keyframes pop{0%{transform:scale(.4);opacity:0}60%{transform:scale(1.08);opacity:1}100%{transform:none}}
 
+/* Menú */
+.nav{display:none;list-style:none;align-items:center;gap:1.3rem}
+.nav a,.nav button{position:relative;display:inline-flex;align-items:center;min-height:44px;font:700 .9rem var(--sans);color:var(--suave);text-decoration:none;transition:color .2s}
+.nav a::after,.nav button::after{content:"";position:absolute;left:0;right:0;bottom:8px;height:2px;border-radius:2px;background:var(--oro-linea);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+@media(hover:hover){.nav a:hover,.nav button:hover{color:var(--tinta)}.nav a:hover::after,.nav button:hover::after{transform:scaleX(1)}}
+.nav .sep{width:1px;height:20px;background:var(--linea)}
+.burger{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-content:center;gap:6px}
+.burger span{display:block;width:22px;height:2px;border-radius:2px;background:var(--tinta);transition:transform .35s var(--ease)}
+.burger[aria-expanded=true] span:first-child{transform:translateY(4px) rotate(45deg)}
+.burger[aria-expanded=true] span:last-child{transform:translateY(-4px) rotate(-45deg)}
+.menu-movil{position:fixed;left:0;right:0;top:calc(68px + env(safe-area-inset-top,0px));z-index:49;background:#fff;padding:.4rem var(--pad) 1.4rem;box-shadow:0 24px 40px -24px rgba(40,10,12,.4);max-height:calc(100dvh - 68px);overflow:auto;transform:translateY(-10px);opacity:0;visibility:hidden;transition:transform .35s var(--ease),opacity .3s,visibility 0s .35s}
+.menu-movil.abierto{transform:none;opacity:1;visibility:visible;transition:transform .35s var(--ease),opacity .3s}
+.menu-movil .cap{font:800 .7rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--vino);padding:1.2rem 0 .3rem}
+.menu-movil a,.menu-movil button.item{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:52px;font:800 1.35rem/1.1 var(--display);letter-spacing:-.02em;color:var(--tinta);text-decoration:none;border-bottom:1px solid var(--linea);text-align:left}
+.menu-movil .btn{width:100%;margin-top:1.2rem}
+@media(min-width:1200px){.nav{display:flex}.burger,.menu-movil{display:none}}
+.nav a,.nav button{white-space:nowrap}
+@media(min-width:1200px) and (max-width:1359px){.cab-remax{display:none!important}}
+@media(max-width:759px){.cab .btn{display:none}}
+/* Idioma */
+.lg{position:relative;flex:none}
+.lcur{display:flex;align-items:center;gap:.35rem;height:44px;padding:0 .55rem 0 .4rem;border:1.5px solid var(--linea);border-radius:999px;background:#fff;transition:border-color .2s}
+.lcur[aria-expanded=true]{border-color:var(--vino)}
+.fl{width:26px;height:26px;border-radius:50%;overflow:hidden;display:block;flex:none;box-shadow:0 0 0 1px rgba(40,10,12,.12)}.fl svg{width:100%;height:100%;display:block}
+.lcur .chev{width:10px;height:6px;transition:transform .25s}.lcur[aria-expanded=true] .chev{transform:rotate(180deg)}
+.lmenu{position:absolute;right:0;top:calc(100% + .5rem);min-width:170px;background:#fff;border:1px solid var(--linea);border-radius:14px;box-shadow:0 20px 44px -14px rgba(40,10,12,.35);padding:.35rem;z-index:70;display:grid;gap:.15rem;animation:entra .25s var(--ease) both}
+.lmenu button{display:flex;align-items:center;gap:.7rem;width:100%;min-height:46px;padding:0 .8rem;border-radius:10px;font:700 .95rem var(--sans);color:var(--tinta);text-align:left}
+.lmenu button[aria-pressed=true]{background:var(--crema)}
+.lmenu button[aria-pressed=true]::after{content:"✓";margin-left:auto;color:var(--vino);font-weight:800}
+/* Cinta de zonas */
+.cinta{background:var(--vino);color:#fff;overflow:hidden;white-space:nowrap;padding:1rem 0}
+.cinta-pista{display:inline-flex;animation:cinta 42s linear infinite}
+.cinta-mitad{display:inline-flex}
+.cinta span{display:inline-flex;align-items:center;gap:1.6rem;padding-right:1.6rem;font:800 .95rem/1 var(--sans);letter-spacing:.14em;text-transform:uppercase}
+.cinta span::after{content:"";width:30px;height:10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 12'%3E%3Cpath d='M3 8 C9 1.5, 14 1.5, 20 6 S 31 10.5, 37 4' fill='none' stroke='%23D4B26A' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/contain}
+@media(hover:hover){.cinta:hover .cinta-pista{animation-play-state:paused}}
+@keyframes cinta{to{transform:translateX(-50%)}}
+/* Oficina y mapa */
+.ofi .wrap{display:grid;gap:1.8rem;align-items:center}
+.ofi address{font-style:normal;margin:1.1rem 0 1.4rem;color:var(--suave);font-weight:600;line-height:1.55}
+.ofi address b{display:block;color:var(--tinta);font:800 1.15rem/1.3 var(--display);margin-bottom:.2rem}
+.ofi .acciones{display:flex;flex-wrap:wrap;gap:.7rem}
+.mapa{aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;background:var(--crema);box-shadow:var(--sombra);border:1px solid var(--linea)}
+.mapa iframe{width:100%;height:100%;border:0;display:block}
+@media(min-width:900px){.ofi .wrap{grid-template-columns:.85fr 1.15fr;gap:4rem}.mapa{aspect-ratio:16/11}}
+/* Foto de la oficina en contacto, con fundido */
+.caja-foto{position:absolute;left:0;right:0;top:0;height:260px;z-index:-1;-webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 45%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 45%,transparent 100%)}
+.caja-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;opacity:.3;filter:saturate(.65) contrast(1.05);transform:scale(1.1);will-change:transform}
+.caja{padding-top:150px}
+@media(min-width:900px){
+  .caja{padding-top:clamp(1.8rem,6vw,3.5rem)}
+  .caja>:not(.caja-foto){max-width:58%}
+  .caja-foto{left:auto;width:46%;height:auto;bottom:0;-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.6) 35%,#000 100%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.6) 35%,#000 100%)}
+  .caja-foto img{object-position:50% 28%;opacity:.42}
+}
+@media(prefers-reduced-motion:reduce){.cinta-pista,.girar{animation:none!important}.cara.frente img,.caja-foto img{transform:none}}
+
 /* =====================================================================
    ANIMACIONES — solo transform y opacity (fluidas en iPhone y Android)
    ===================================================================== */
@@ -360,12 +432,42 @@ const CONFIG = {
       <strong aria-hidden="true">Sergio Ma<span class="tn">n</span>ojil</strong>
       <small aria-hidden="true">Agente inmobiliario · RE/MAX</small>
     </a>
+    <nav aria-label="Menú principal"><ul class="nav">
+      <li><button type="button" data-abrir="vender">Vender</button></li>
+      <li><button type="button" data-abrir="comprar">Comprar</button></li>
+      <li><button type="button" data-abrir="alquilar">Alquilar</button></li>
+      <li><button type="button" data-abrir="invertir">Invertir</button></li>
+      <li class="sep" aria-hidden="true"></li>
+      <li><a href="#proceso">Cómo trabajo</a></li>
+      <li><a href="#oficina">Oficina</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul></nav>
     <div class="cab-der">
       <img class="cab-remax" src="img/remax-lanzagorta.png" width="560" height="180" alt="RE/MAX Grupo Lanzagorta">
+      <div class="lg" id="lg"><button type="button" class="lcur" id="lcur" aria-haspopup="true" aria-expanded="false" aria-controls="lmenu" aria-label="Idioma"><span class="fl" id="lflag"><svg viewBox="0 0 3 2" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="3" height="2" fill="#AA151B"/><rect y=".5" width="3" height="1" fill="#F1BF00"/></svg></span><svg class="chev" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="lmenu" id="lmenu" role="group" aria-label="Idioma" hidden>
+          <button type="button" data-lang="es" lang="es" aria-pressed="true"><span class="fl"><svg viewBox="0 0 3 2" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="3" height="2" fill="#AA151B"/><rect y=".5" width="3" height="1" fill="#F1BF00"/></svg></span>Español</button>
+          <button type="button" data-lang="en" lang="en" aria-pressed="false"><span class="fl"><svg viewBox="0 0 60 40" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="60" height="40" fill="#012169"/><path d="M0 0l60 40M60 0L0 40" stroke="#fff" stroke-width="8"/><path d="M0 0l60 40M60 0L0 40" stroke="#C8102E" stroke-width="3"/><path d="M30 0v40M0 20h60" stroke="#fff" stroke-width="13"/><path d="M30 0v40M0 20h60" stroke="#C8102E" stroke-width="7"/></svg></span>English</button>
+        </div>
+      </div>
       <button type="button" class="btn btn-vino" data-abrir="">Hablemos</button>
+      <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menú"><span></span><span></span></button>
     </div>
   </div>
 </header>
+<div class="menu-movil" id="menu-movil">
+  <p class="cap">Servicios</p>
+  <button type="button" class="item" data-abrir="vender">Vender <span aria-hidden="true">→</span></button>
+  <button type="button" class="item" data-abrir="comprar">Comprar <span aria-hidden="true">→</span></button>
+  <button type="button" class="item" data-abrir="alquilar">Alquilar <span aria-hidden="true">→</span></button>
+  <button type="button" class="item" data-abrir="invertir">Invertir <span aria-hidden="true">→</span></button>
+  <p class="cap">Conóceme</p>
+  <a href="#proceso">Cómo trabajo</a>
+  <a href="#preguntas">Preguntas frecuentes</a>
+  <a href="#oficina">Oficina</a>
+  <a href="#contacto">Contacto</a>
+  <button type="button" class="btn btn-vino" data-abrir="">Hablemos</button>
+</div>
 
 <main id="main">
 <section class="hero" id="top">
@@ -373,8 +475,8 @@ const CONFIG = {
     <div class="texto">
       <p class="eyebrow entra" style="--d:0">Agente inmobiliario en Gran Canaria</p>
       <h1>
-        <span class="w"><span style="--i:0">Vende,</span></span> <span class="w"><span style="--i:1">compra</span></span> <span class="w"><span style="--i:2">o</span></span><br> <span class="w"><span style="--i:3">alquila</span></span> <span class="w"><span style="--i:4">con</span></span> <span class="w"><span style="--i:5">un</span></span> <span class="w w-sub"><span style="--i:6" class="subrayado">plan.<svg viewBox="0 0 40 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 8 C9 1.5, 14 1.5, 20 6 S 31 10.5, 37 4"/></svg></span></span><br>
-        <span class="w rojo"><span style="--i:7">No</span></span> <span class="w rojo"><span style="--i:8">con</span></span> <span class="w rojo"><span style="--i:9">suerte.</span></span>
+        <span class="w"><span style="--i:0" data-en="Sell,">Vende,</span></span> <span class="w"><span style="--i:1" data-en="buy">compra</span></span> <span class="w"><span style="--i:2" data-en="or">o</span></span><br> <span class="w"><span style="--i:3" data-en="rent">alquila</span></span> <span class="w"><span style="--i:4" data-en="with">con</span></span> <span class="w"><span style="--i:5" data-en="a">un</span></span> <span class="w w-sub"><span style="--i:6" class="subrayado">plan.<svg viewBox="0 0 40 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 8 C9 1.5, 14 1.5, 20 6 S 31 10.5, 37 4"/></svg></span></span><br>
+        <span class="w rojo"><span style="--i:7" data-en="Not">No</span></span> <span class="w rojo"><span style="--i:8" data-en="with">con</span></span> <span class="w rojo"><span style="--i:9" data-en="luck.">suerte.</span></span>
       </h1>
       <p class="lead entra" style="--d:450">Vender o comprar una casa es de las decisiones más caras de tu vida. Mi trabajo es que salga bien: <b>precio justo, cero sorpresas y una sola persona contigo de principio a fin.</b></p>
       <p class="pregunta entra" style="--d:550">¿Qué necesitas?</p>
@@ -387,10 +489,13 @@ const CONFIG = {
       <p class="nota entra" style="--d:850"><svg aria-hidden="true"><use href="#i-clock"/></svg>Te lleva un minuto. Sin compromiso.</p>
     </div>
     <div class="foto">
-      <picture>
-        <source type="image/webp" srcset="img/sergio-720.webp 720w, img/sergio-1200.webp 1200w" sizes="(min-width: 960px) 440px, 92vw">
-        <img src="img/sergio-720.jpg" srcset="img/sergio-720.jpg 720w, img/sergio-1200.jpg 1200w" sizes="(min-width: 960px) 440px, 92vw" width="720" height="709" alt="Sergio Mañojil, agente inmobiliario de RE/MAX Lanzagorta" fetchpriority="high" decoding="async">
-      </picture>
+      <div class="flip"><button type="button" class="flipbtn" id="flipbtn" aria-pressed="false" aria-label="Dar la vuelta a la foto"><span class="fi">
+        <span class="cara frente"><picture>
+          <source type="image/webp" srcset="img/sergio-720.webp 720w, img/sergio-1200.webp 1200w" sizes="(min-width: 960px) 440px, 92vw">
+          <img src="img/sergio-720.jpg" srcset="img/sergio-720.jpg 720w, img/sergio-1200.jpg 1200w" sizes="(min-width: 960px) 440px, 92vw" width="720" height="709" alt="Sergio Mañojil, agente inmobiliario de RE/MAX Lanzagorta" fetchpriority="high" decoding="async" data-par>
+        </picture><span class="girar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg></span></span>
+        <span class="cara dorso"><img src="img/remax-lanzagorta.png" width="560" height="180" alt="RE/MAX Grupo Lanzagorta" loading="lazy"><strong>Oficina RE/MAX Lanzagorta</strong><em>Sergio Mañojil Cabrera<br>Agente inmobiliario asociado</em></span>
+      </span></button></div>
       <div class="sello"><img src="img/remax-lanzagorta.png" width="560" height="180" alt="" aria-hidden="true"><div><strong>Sergio Mañojil</strong><span>Agente asociado · RE/MAX Lanzagorta</span></div></div>
     </div>
   </div>
@@ -402,6 +507,8 @@ const CONFIG = {
     </ul>
   </div>
 </section>
+
+<div class="cinta" aria-hidden="true"><div class="cinta-pista"><div class="cinta-mitad"><span>Las Palmas de Gran Canaria</span><span>Triana</span><span>Vegueta</span><span>Guanarteme</span><span>Las Canteras</span><span>Ciudad Jardín</span><span>Tafira</span><span>Telde</span><span>Arucas</span><span>Santa Brígida</span></div><div class="cinta-mitad"><span>Las Palmas de Gran Canaria</span><span>Triana</span><span>Vegueta</span><span>Guanarteme</span><span>Las Canteras</span><span>Ciudad Jardín</span><span>Tafira</span><span>Telde</span><span>Arucas</span><span>Santa Brígida</span></div></div></div>
 
 <section class="valor" id="valoracion">
   <div class="wrap">
@@ -450,11 +557,27 @@ const CONFIG = {
   </div>
 </section>
 
+<section class="ofi" id="oficina">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow rv">Oficina</p>
+      <h2 class="rv">Ven a conocerme</h2>
+      <address class="rv"><b>RE/MAX Lanzagorta</b><span data-oficina></span></address>
+      <p class="lead rv">Pásate y pregunta por mí. Si me avisas antes, te reservo un hueco.</p>
+      <div class="acciones rv" style="margin-top:1.4rem">
+        <a class="btn btn-vino" id="como-llegar" target="_blank" rel="noopener">Cómo llegar <span class="flecha" aria-hidden="true">→</span></a>
+        <button type="button" class="btn btn-borde" data-abrir="">Prefiero que me llames</button>
+      </div>
+    </div>
+    <div class="mapa rv"><iframe id="mapa" title="Mapa de la oficina de RE/MAX Lanzagorta" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+  </div>
+</section>
+
 <section class="final" id="contacto">
   <div class="wrap">
     <div class="caja rv">
+      <div class="caja-foto" aria-hidden="true"><picture><source type="image/webp" srcset="img/sergio-oficina.webp"><img src="img/sergio-oficina.jpg" width="800" height="1421" alt="" loading="lazy" decoding="async" data-par></picture></div>
       <div class="quien">
-        <picture><source type="image/webp" srcset="img/sergio-avatar.webp"><img src="img/sergio-avatar.jpg" width="320" height="320" alt="" loading="lazy" decoding="async"></picture>
         <div><strong>Sergio Mañojil</strong><span>Agente asociado · RE/MAX Lanzagorta</span></div>
       </div>
       <h2>¿Hablamos?</h2>
@@ -464,7 +587,6 @@ const CONFIG = {
         <a class="btn btn-borde-claro" data-wa="general"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
         <a class="btn btn-borde-claro" data-tel><svg aria-hidden="true"><use href="#i-tel"/></svg>Llamar</a>
       </div>
-      <p class="oficina"><span><b>Oficina:</b> <span data-oficina></span></span><a id="como-llegar" target="_blank" rel="noopener">Cómo llegar →</a></p>
     </div>
   </div>
 </section>
@@ -535,7 +657,8 @@ const CONFIG = {
   /* ---------- Datos de contacto ---------- */
   var wa=(C.WHATSAPP_NUMBER||'').replace(/\D/g,'');
   var MSG={general:'Hola Sergio, he visto tu web y me gustaría hablar contigo.',vender:'Hola Sergio, he visto tu web y quiero vender mi vivienda.',comprar:'Hola Sergio, he visto tu web y estoy buscando vivienda para comprar.',alquilar:'Hola Sergio, he visto tu web y quiero alquilar mi vivienda.',invertir:'Hola Sergio, he visto tu web y me interesa invertir en Gran Canaria.'};
-  function waUrl(k){return 'https://wa.me/'+wa+'?text='+encodeURIComponent(MSG[k]||MSG.general)}
+  function waUrl(k){var M=LG==='en'?MSG_EN:MSG;return 'https://wa.me/'+wa+'?text='+encodeURIComponent(M[k]||M.general)}
+  function refrescarWA(){if(!wa)return;$('[data-wa]').forEach(function(a){a.href=waUrl(a.dataset.wa==='general'&&a.closest('#hoja')?(cur||'general'):a.dataset.wa)})}
   $('[data-wa]').forEach(function(a){if(!wa){a.hidden=true;return}a.href=waUrl(a.dataset.wa);a.target='_blank';a.rel='noopener'});
   $('[data-tel]').forEach(function(a){if(!C.PHONE_NUMBER){a.hidden=true;return}a.href='tel:'+C.PHONE_NUMBER.replace(/\s/g,'')});
   $('[data-href]').forEach(function(a){var v=C[a.dataset.href];v?a.setAttribute('href',v):a.hidden=true});
@@ -544,6 +667,64 @@ const CONFIG = {
   id('anio').textContent=new Date().getFullYear();
   var PRIV=['<b>Responsable:</b> Sergio Mañojil Cabrera, agente inmobiliario asociado de RE/MAX Lanzagorta.','<b>Finalidad:</b> atender tu solicitud y contactar contigo por teléfono, WhatsApp o email.','<b>Legitimación:</b> tu consentimiento, que puedes retirar cuando quieras.','<b>Destinatarios:</b> no se ceden a terceros, salvo obligación legal. Un proveedor técnico de formularios (FormSubmit) solo me hace llegar tu mensaje.','<b>Conservación:</b> el tiempo necesario para atender tu solicitud.','<b>Derechos:</b> acceso, rectificación, supresión, oposición, limitación y portabilidad, escribiendo a '+C.EMAIL_ADDRESS+'. Puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).'];
   $('[data-privacidad]').forEach(function(u){u.innerHTML=PRIV.map(function(t){return '<li>'+t+'</li>'}).join('')});
+  var qMapa=encodeURIComponent(C.OFFICE_NAME+' '+C.OFFICE_ADDRESS);
+  id('mapa').src='https://maps.google.com/maps?q='+qMapa+'&z=16&hl=es&ie=UTF8&output=embed';
+
+  /* ---------- Idioma ES / EN ---------- */
+  var LG='es',T0=document.title,M0=document.querySelector('meta[name=description]').content;
+  var TEN='Sergio Mañojil | Real estate agent in Gran Canaria · RE/MAX Lanzagorta',MEN='Sell, buy or rent in Gran Canaria with a plan, not with luck. Free valuation and direct contact with Sergio Mañojil, real estate agent at RE/MAX Lanzagorta.';
+  var MSG_EN={general:'Hi Sergio, I saw your website and I would like to talk to you.',vender:'Hi Sergio, I saw your website and I want to sell my property.',comprar:'Hi Sergio, I saw your website and I am looking for a property to buy.',alquilar:'Hi Sergio, I saw your website and I want to rent out my property.',invertir:'Hi Sergio, I saw your website and I am interested in investing in Gran Canaria.'};
+  var D={"Saltar al contenido":"Skip to content","Agente inmobiliario · RE/MAX":"Real estate agent · RE/MAX","Hablemos":"Let's talk","Menú principal":"Main menu","Vender":"Sell","Comprar":"Buy","Alquilar":"Rent","Invertir":"Invest","Cómo trabajo":"How I work","Oficina":"Office","Contacto":"Contact","Idioma":"Language","Abrir menú":"Open menu","Cerrar menú":"Close menu","Servicios":"Services","Conóceme":"About me","Preguntas frecuentes":"Frequently asked questions",
+  "Agente inmobiliario en Gran Canaria":"Real estate agent in Gran Canaria","Vender o comprar una casa es de las decisiones más caras de tu vida. Mi trabajo es que salga bien:":"Buying or selling a home is one of the most expensive decisions of your life. My job is to make it go well:","precio justo, cero sorpresas y una sola persona contigo de principio a fin.":"a fair price, zero surprises and one person by your side from start to finish.","¿Qué necesitas?":"What do you need?","Al mejor precio, sin malvender":"At the best price, without underselling","Encuentra la tuya sin perder meses":"Find yours without wasting months","Tu vivienda, en buenas manos":"Your home, in good hands","Decide con números, no a ojo":"Decide with numbers, not guesswork","Te lleva un minuto. Sin compromiso.":"It takes a minute. No obligation.",
+  "Dar la vuelta a la foto":"Flip the photo","Sergio Mañojil, agente inmobiliario de RE/MAX Lanzagorta":"Sergio Mañojil, real estate agent at RE/MAX Lanzagorta","Sergio Mañojil, agente inmobiliario. Ir al inicio":"Sergio Mañojil, real estate agent. Go to top","Oficina RE/MAX Lanzagorta":"RE/MAX Lanzagorta office","Agente inmobiliario asociado":"Associate real estate agent","Agente asociado · RE/MAX Lanzagorta":"Associate agent · RE/MAX Lanzagorta",
+  "Valoración gratuita":"Free valuation","Sin coste y sin ningún compromiso":"No cost and no obligation","La fuerza de RE/MAX":"The strength of RE/MAX","Una red presente en más de 120 países y territorios":"A network present in more than 120 countries and territories","Hablas conmigo":"You talk to me","Siempre yo. Nada de call centers ni de pasarte de mano en mano":"Always me. No call centres and no being passed around",
+  "¿Cuánto vale de verdad tu vivienda?":"What is your home really worth?","Poner mal el precio es el error más caro al vender. Si te pasas, tu casa se «quema» en los portales y acabas bajando. Si te quedas corto, regalas dinero.":"Getting the price wrong is the most expensive mistake when selling. Too high and your home goes stale on the portals until you have to lower it. Too low and you give money away.","Por eso no doy cifras a ojo.":"That's why I never guess a figure.","Estudio de viviendas comparables en tu zona":"Study of comparable homes in your area","Precio recomendado y estrategia para vender rápido":"Recommended price and a strategy to sell fast","Gratis y sin compromiso: decides tú con toda la información":"Free and with no obligation: you decide with all the information","Quiero mi valoración gratis":"Get my free valuation",
+  "Cuatro pasos. Cero sorpresas.":"Four steps. Zero surprises.","Te escucho":"I listen","Me cuentas tu situación, tus plazos y lo que necesitas. Sin compromiso.":"You tell me your situation, your timing and what you need. No obligation.","Diseño el plan":"I design the plan","Precio, estrategia y calendario, con datos reales del mercado de tu zona.":"Price, strategy and timeline, based on real market data for your area.","Lo pongo en marcha":"I put it into action","Portales, red RE/MAX y MLS si vendes o alquilas. Búsqueda y visitas filtradas si compras.":"Portals, the RE/MAX network and the MLS if you sell or rent out. A filtered search and viewings if you buy.","Negocio y cierro":"I negotiate and close","Negocio a tu favor y te acompaño en arras, papeles y notaría.":"I negotiate in your favour and guide you through the deposit contract, paperwork and notary.","Empezar ahora":"Get started","El primer paso no te compromete a nada.":"The first step commits you to nothing.",
+  "Lo que todo el mundo me pregunta":"What everyone asks me","¿Cuánto me cuesta la valoración?":"How much does the valuation cost?","Nada. Es gratuita y sin compromiso. Te explico cómo llego al precio recomendado y decides tú, con toda la información delante.":"Nothing. It's free and with no obligation. I explain how I reach the recommended price and you decide, with all the information in front of you.","¿Por qué no vender por mi cuenta?":"Why not sell on my own?","Puedes hacerlo. Pero un precio mal fijado, una negociación floja o un papel que falta en el último momento suelen salir más caros que contar con un profesional. Mi trabajo es que eso no pase, y que tú no pierdas tardes enseñando la casa a quien no va a comprar.":"You can. But a wrongly set price, weak negotiation or a missing document at the last minute usually cost more than hiring a professional. My job is to make sure that doesn't happen, and that you don't waste afternoons showing your home to people who won't buy.","¿Cuánto se tarda en vender una vivienda?":"How long does it take to sell a home?","Depende de la zona, del tipo de inmueble y, sobre todo, del precio de salida. Una vivienda bien valorada y bien presentada se vende antes. En la valoración te doy una estimación realista para tu caso.":"It depends on the area, the type of property and, above all, the asking price. A well-priced, well-presented home sells sooner. In the valuation I give you a realistic estimate for your case.","¿Qué documentación necesito para vender?":"What documents do I need to sell?","Principalmente la escritura o nota simple, el último recibo del IBI, el certificado de eficiencia energética y el certificado de la comunidad de propietarios, además de otros según el caso. Te ayudo a reunirlo todo.":"Mainly the title deed or land registry extract, the latest property tax (IBI) receipt, the energy performance certificate and the homeowners' association certificate, plus others depending on the case. I help you gather it all.","¿En qué zonas trabajas?":"Which areas do you cover?","En toda Gran Canaria, especialmente en Las Palmas de Gran Canaria y alrededores. Si tu inmueble está fuera de la isla, escríbeme y lo vemos.":"All of Gran Canaria, especially Las Palmas de Gran Canaria and the surrounding area. If your property is off the island, message me and we'll see.",
+  "Ven a conocerme":"Come and meet me","Pásate y pregunta por mí. Si me avisas antes, te reservo un hueco.":"Drop by and ask for me. If you let me know beforehand, I'll keep a slot free for you.","Cómo llegar":"Get directions","Prefiero que me llames":"I'd rather you call me","Mapa de la oficina de RE/MAX Lanzagorta":"Map of the RE/MAX Lanzagorta office",
+  "¿Hablamos?":"Shall we talk?","Cuéntame tu caso y te digo, sin rodeos, cómo lo haría yo. Te respondo personalmente.":"Tell me about your case and I'll tell you, straight up, how I'd handle it. I reply personally.","Dejar mis datos":"Leave my details","Llamar":"Call","Redes sociales":"Social media","Agente inmobiliario asociado · RE/MAX Lanzagorta · Gran Canaria":"Associate real estate agent · RE/MAX Lanzagorta · Gran Canaria","Protección de datos":"Data protection","Cada oficina RE/MAX es de propiedad y gestión independiente.":"Each RE/MAX office is independently owned and operated.","Pedir valoración o consulta":"Free valuation or enquiry","Escríbeme por WhatsApp":"Message me on WhatsApp","Cerrar":"Close",
+  "Responsable:":"Data controller:","Sergio Mañojil Cabrera, agente inmobiliario asociado de RE/MAX Lanzagorta.":"Sergio Mañojil Cabrera, associate real estate agent at RE/MAX Lanzagorta.","Finalidad:":"Purpose:","atender tu solicitud y contactar contigo por teléfono, WhatsApp o email.":"to handle your request and contact you by phone, WhatsApp or email.","Legitimación:":"Legal basis:","tu consentimiento, que puedes retirar cuando quieras.":"your consent, which you can withdraw at any time.","Destinatarios:":"Recipients:","no se ceden a terceros, salvo obligación legal. Un proveedor técnico de formularios (FormSubmit) solo me hace llegar tu mensaje.":"not shared with third parties unless legally required. A technical form provider (FormSubmit) only delivers your message to me.","Conservación:":"Retention:","el tiempo necesario para atender tu solicitud.":"as long as needed to handle your request.","Derechos:":"Rights:",
+  "Cuéntame qué necesitas":"Tell me what you need","Te respondo personalmente. Sin compromiso.":"I'll reply personally. No obligation.","Elige una opción y te respondo personalmente. Sin compromiso.":"Pick an option and I'll reply personally. No obligation.","Enviar":"Send","Enviando…":"Sending…","Vamos a vender tu vivienda":"Let's sell your home","Déjame tus datos y te preparo una valoración gratuita, sin compromiso.":"Leave your details and I'll prepare a free valuation, with no obligation.","Vamos a encontrar tu vivienda":"Let's find your home","Cuéntame qué buscas y te aviso de lo que encaje contigo.":"Tell me what you're looking for and I'll let you know what fits.","Empezar mi búsqueda":"Start my search","Vamos a alquilar tu vivienda":"Let's rent out your home","Te ayudo a encontrar inquilinos con perfil solvente y a hacerlo todo bien.":"I'll help you find reliable tenants and do everything right.","Quiero alquilar mi vivienda":"Rent out my home","Vamos a analizar tu inversión":"Let's analyse your investment","Cuéntame tu objetivo y lo vemos con números.":"Tell me your goal and we'll look at it with numbers.","Analizar mi inversión":"Analyse my investment",
+  "Nombre":"Name","Teléfono":"Phone","Email":"Email","(opcional)":"(optional)","Añadir detalles":"Add details","Comentarios":"Comments","Cualquier cosa que quieras contarme":"Anything you'd like to tell me","Acepto que Sergio me contacte con estos datos para atender mi solicitud.":"I agree that Sergio may contact me with these details to handle my request.","Ver información de protección de datos":"See data protection information","¿Prefieres hablar ya?":"Prefer to talk now?","¡Recibido,":"Got it,","Reviso tu caso y te contacto yo mismo por teléfono. Si te corre prisa, escríbeme por WhatsApp.":"I'll review your case and call you myself. If you're in a hurry, message me on WhatsApp.","Escribir por WhatsApp":"Message on WhatsApp",
+  "Elige arriba qué necesitas: vender, comprar, alquilar o invertir.":"Choose above what you need: sell, buy, rent or invest.","Necesito tu nombre y un teléfono válido para llamarte.":"I need your name and a valid phone number to call you.","Revisa el email o déjalo en blanco.":"Check the email or leave it blank.","Marca la casilla para que pueda contactarte.":"Tick the box so I can contact you.",
+  "Tipo de inmueble":"Property type","Municipio":"Municipality","Barrio o calle aproximada":"Neighbourhood or approximate street","Superficie (m²)":"Size (m²)","Habitaciones":"Bedrooms","¿Cuándo te gustaría vender?":"When would you like to sell?","Precio que tienes en mente (€)":"Price you have in mind (€)","Zonas que te interesan":"Areas you're interested in","Presupuesto máximo (€)":"Maximum budget (€)","Habitaciones (mínimo)":"Bedrooms (minimum)","Financiación":"Financing","¿Cuándo quieres comprar?":"When do you want to buy?","¿Está amueblada?":"Is it furnished?","¿Cuándo estaría disponible?":"When would it be available?","Renta que tienes en mente (€/mes)":"Rent you have in mind (€/month)","Presupuesto (€)":"Budget (€)","Objetivo":"Goal","¿Cuándo quieres invertir?":"When do you want to invest?",
+  "Sin indicar":"Not specified","Piso":"Flat","Ático":"Penthouse","Dúplex":"Duplex","Casa / chalet":"House / villa","Local comercial":"Commercial premises","Suelo / terreno":"Land / plot","Finca":"Rural estate (finca)","Garaje / trastero":"Garage / storage room","Edificio":"Building","Otro":"Other","Fondos propios":"Own funds","Necesito hipoteca":"I need a mortgage","Ya tengo hipoteca aprobada":"Mortgage already approved","Aún no lo sé":"Not sure yet","Lo antes posible":"As soon as possible","En 1-3 meses":"In 1-3 months","En 3-6 meses":"In 3-6 months","Más adelante":"Later on","Solo quiero informarme":"Just finding out","Sí":"Yes","Parcialmente":"Partly","Ya":"Now","Alquiler de larga duración":"Long-term rental","Alquiler vacacional":"Holiday rental","Reforma y venta":"Renovate and sell","Patrimonio a largo plazo":"Long-term wealth","Lo estoy valorando":"Still deciding"};
+  D['acceso, rectificación, supresión, oposición, limitación y portabilidad, escribiendo a '+C.EMAIL_ADDRESS+'. Puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).']='access, rectification, erasure, objection, restriction and portability, by writing to '+C.EMAIL_ADDRESS+'. You can lodge a complaint with the Spanish Data Protection Agency (aepd.es).';
+  D['No se ha podido enviar. Escríbeme por WhatsApp o llámame al '+C.PHONE_NUMBER+'.']="It couldn't be sent. Message me on WhatsApp or call me on "+C.PHONE_NUMBER+'.';
+  function nz(x){return x.replace(/\s+/g,' ').trim()}
+  function trn(es,nodo){if(LG!=='en')return es;var p=nodo&&nodo.parentNode;if(p&&p.dataset&&p.dataset.en)return p.dataset.en;var v=D[nz(es)];if(v==null)return es;return es.match(/^\s*/)[0]+v+es.match(/\s*$/)[0]}
+  function applyLang(raiz){raiz=raiz||document.body;
+    var w=document.createTreeWalker(raiz,NodeFilter.SHOW_TEXT,null),n,ls=[];
+    while(n=w.nextNode()){if(!/^(SCRIPT|STYLE|NOSCRIPT)$/.test(n.parentNode.nodeName)&&n.nodeValue.trim())ls.push(n)}
+    ls.forEach(function(n){if(n.__es===undefined)n.__es=n.nodeValue;var v=trn(n.__es,n);if(n.nodeValue!==v)n.nodeValue=v});
+    var AE=$('[aria-label],[title],[alt],[placeholder]',raiz);if(raiz.matches&&raiz.matches('[aria-label],[title],[alt],[placeholder]'))AE.unshift(raiz);
+    AE.forEach(function(e){['aria-label','title','alt','placeholder'].forEach(function(a){if(!e.hasAttribute(a))return;e.__a=e.__a||{};if(e.__a[a]===undefined)e.__a[a]=e.getAttribute(a);var v=trn(e.__a[a]);if(e.getAttribute(a)!==v)e.setAttribute(a,v)})})}
+  function L(x){if(LG==='en')applyLang(x)}
+  var lcur=id('lcur'),lmenu=id('lmenu');
+  function lAbrir(o){lmenu.hidden=!o;lcur.setAttribute('aria-expanded',o)}
+  function setLang(lg,guardar){LG=lg;document.documentElement.lang=lg;document.title=lg==='en'?TEN:T0;document.querySelector('meta[name=description]').content=lg==='en'?MEN:M0;
+    $('.lmenu button').forEach(function(b){var on=b.dataset.lang===lg;b.setAttribute('aria-pressed',on);if(on)id('lflag').innerHTML=b.querySelector('.fl').innerHTML});
+    applyLang(document.body);refrescarWA();
+    if(guardar)try{localStorage.setItem('lang',lg)}catch(e){}}
+  lcur.addEventListener('click',function(e){e.stopPropagation();lAbrir(lmenu.hidden)});
+  $('.lmenu button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang,true);lAbrir(false);lcur.focus()})});
+  document.addEventListener('click',function(e){if(!e.target.closest('#lg'))lAbrir(false)});
+
+  /* ---------- Menú ---------- */
+  var burger=id('burger'),mm=id('menu-movil');
+  function menu(o){burger.setAttribute('aria-expanded',o);burger.__a=burger.__a||{};burger.__a['aria-label']=o?'Cerrar menú':'Abrir menú';burger.setAttribute('aria-label',burger.__a['aria-label']);L(burger);mm.classList.toggle('abierto',o)}
+  burger.addEventListener('click',function(){menu(burger.getAttribute('aria-expanded')!=='true')});
+  $('a,button',mm).forEach(function(a){a.addEventListener('click',function(){menu(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){menu(false);lAbrir(false)}});
+  document.addEventListener('click',function(e){if(mm.classList.contains('abierto')&&!e.target.closest('#menu-movil,#burger'))menu(false)});
+
+  /* ---------- Tarjeta que gira (en móvil, al tocar) ---------- */
+  var fb=id('flipbtn');fb.addEventListener('click',function(){if(!matchMedia('(hover:hover) and (pointer:fine)').matches)fb.setAttribute('aria-pressed',fb.getAttribute('aria-pressed')!=='true')});
+
+  /* ---------- Efecto de profundidad ---------- */
+  var par=$('img[data-par]'),tic=false;
+  function marco(){tic=false;var vh=innerHeight;par.forEach(function(im){var r=im.parentNode.getBoundingClientRect();if(r.bottom<0||r.top>vh)return;var y=Math.max(-1,Math.min(1,(r.top+r.height/2-vh/2)/vh));im.style.transform='translate3d(0,'+(y*-4).toFixed(2)+'%,0) scale(1.1)'})}
+  if(!calma){addEventListener('scroll',function(){if(!tic){tic=true;requestAnimationFrame(marco)}},{passive:true});addEventListener('resize',marco);marco()}
 
   /* ---------- Cabecera, barra móvil ---------- */
   var cab=id('cab'),barra=id('barra'),chips=id('top').querySelector('.chips'),centinela=el('div');
@@ -594,6 +775,7 @@ const CONFIG = {
     $('button',seg).forEach(function(b){b.setAttribute('aria-pressed',b.dataset.k===cur)});seg.classList.remove('error');
     id('hoja-t').textContent=t.t;id('hoja-sub').textContent=t.s;btn.textContent=t.b;construir(cur);
     $('[data-wa]',hoja).forEach(function(a){if(wa)a.href=waUrl(cur||'general')});
+    L(hoja);
   }
   $('button',seg).forEach(function(b){b.addEventListener('click',function(){elegir(b.dataset.k)})});
   function abrir(k){
@@ -630,22 +812,26 @@ const CONFIG = {
     var mailMal=vM&&!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(vM);marcar(m,mailMal);if(mailMal)mal.push(m);
     id('chk-l').classList.toggle('error',!c.checked);if(!c.checked)mal.push(c);
     if(!cur){seg.classList.add('error');mal.unshift(seg.querySelector('button'))}
-    if(mal.length){var faltan=!n.value.trim()||telMal;err.textContent=!cur?'Elige arriba qué necesitas: vender, comprar, alquilar o invertir.':(faltan?'Necesito tu nombre y un teléfono válido para llamarte.':(mailMal?'Revisa el email o déjalo en blanco.':'Marca la casilla para que pueda contactarte.'));err.hidden=false;mal[0].focus();return}
+    if(mal.length){var faltan=!n.value.trim()||telMal;err.textContent=!cur?'Elige arriba qué necesitas: vender, comprar, alquilar o invertir.':(faltan?'Necesito tu nombre y un teléfono válido para llamarte.':(mailMal?'Revisa el email o déjalo en blanco.':'Marca la casilla para que pueda contactarte.'));err.hidden=false;L(err);mal[0].focus();return}
     err.hidden=true;
     var lineas=[];$('[data-f]',campos).forEach(function(x){var v=x.value.trim();if(v)lineas.push('• '+x.dataset.f+': '+v)});
     var com=id('f-com')?id('f-com').value.trim():'';
     var origen=new URLSearchParams(location.search).get('src')||'directo';
     var txt='Solicitud web: quiero '+T[cur].x+'.\n\n• Nombre: '+n.value.trim()+'\n• Teléfono: '+vT+(vM?'\n• Email: '+vM:'')+(lineas.length?'\n'+lineas.join('\n'):'')+(com?'\n• Comentarios: '+com:'')+'\n• Origen: '+origen;
     var nombre=n.value.trim();
-    function bloquear(on){enviando=on;btn.disabled=on;btn.textContent=on?'Enviando…':T[cur].b}
-    function hecho(){bloquear(false);form.reset();$('[aria-invalid]',form).forEach(function(x){x.removeAttribute('aria-invalid')});id('mas').open=false;id('ok-n').textContent=nombre;form.hidden=true;ok.hidden=false;hoja.querySelector('.hoja-cuerpo').scrollTop=0}
-    function fallo(){bloquear(false);err.textContent='No se ha podido enviar. Escríbeme por WhatsApp o llámame al '+C.PHONE_NUMBER+'.';err.hidden=false}
+    function bloquear(on){enviando=on;btn.disabled=on;btn.textContent=on?'Enviando…':T[cur].b;L(btn)}
+    function hecho(){bloquear(false);form.reset();$('[aria-invalid]',form).forEach(function(x){x.removeAttribute('aria-invalid')});id('mas').open=false;id('ok-n').textContent=nombre;form.hidden=true;ok.hidden=false;L(ok);hoja.querySelector('.hoja-cuerpo').scrollTop=0}
+    function fallo(){bloquear(false);err.textContent='No se ha podido enviar. Escríbeme por WhatsApp o llámame al '+C.PHONE_NUMBER+'.';err.hidden=false;L(err)}
     if(id('f-hp').value){hecho();return}
     bloquear(true);
     fetch(C.FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({_subject:'Nueva solicitud web: '+T[cur].t,_template:'table',_honey:'',interes:cur,nombre:nombre,telefono:vT,email:vM||'(no indicado)',mensaje:txt,origen:origen,consentimiento:true})})
       .then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||j.success===false||j.success==='false')throw 0;hecho()})})
       .catch(fallo);
   });
+
+  /* ---------- Idioma guardado o ?lang=en ---------- */
+  var qL=new URLSearchParams(location.search).get('lang'),sv=null;try{sv=localStorage.getItem('lang')}catch(e){}
+  if((qL||sv)==='en')setLang('en');
 })();
 </script>
 </body>

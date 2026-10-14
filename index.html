@@ -22,7 +22,7 @@
 <!-- Icono de la pestaña: la ñ de marca -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237A1E22'/%3E%3Cpath d='M17 22 C23 14, 29 14, 33 19 S 43 24, 48 16' fill='none' stroke='%23D4B26A' stroke-width='4.5' stroke-linecap='round'/%3E%3Cpath d='M21 52 V30 M21 37 C21 31, 26 28, 32 28 S 43 31, 43 38 V52' fill='none' stroke='%23fff' stroke-width='7.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="img/sergio-avatar.jpg">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"RealEstateAgent","name":"Sergio Mañojil Cabrera","alternateName":"Sergio Mañojil","description":"Agente inmobiliario en RE/MAX Lanzagorta. Venta, compra, alquiler e inversión inmobiliaria en Gran Canaria.","url":"https://smanojilcabrera-max.github.io/web-sergio/","telephone":"+34 640 756 947","areaServed":"Gran Canaria","parentOrganization":{"@type":"Organization","name":"RE/MAX Lanzagorta"},"address":{"@type":"PostalAddress","streetAddress":"C/ Juan Manuel Durán González, 53","postalCode":"35010","addressLocality":"Las Palmas de Gran Canaria","addressCountry":"ES"},"sameAs":["https://www.instagram.com/manojil.realestate/","https://www.linkedin.com/in/sergio-ma%C3%B1ojil-cabrera-6573b9397/"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"RealEstateAgent","name":"Sergio Mañojil Cabrera","alternateName":"Sergio Mañojil","description":"Agente inmobiliario en RE/MAX Lanzagorta. Venta, compra, alquiler e inversión inmobiliaria en Gran Canaria.","url":"https://smanojilcabrera-max.github.io/web-sergio/","telephone":"+34 928 377 750","areaServed":"Gran Canaria","parentOrganization":{"@type":"Organization","name":"RE/MAX Lanzagorta"},"address":{"@type":"PostalAddress","streetAddress":"C/ Juan Manuel Durán González, 53","postalCode":"35010","addressLocality":"Las Palmas de Gran Canaria","addressCountry":"ES"},"sameAs":["https://www.instagram.com/manojil.realestate/","https://www.linkedin.com/in/sergio-ma%C3%B1ojil-cabrera-6573b9397/"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -395,10 +395,13 @@ dialog.hoja.cerrando::backdrop{animation:fundir .32s ease reverse both}
    o enlace se oculta (no hay enlaces rotos).
    ===================================================================== */
 const CONFIG = {
-  WHATSAPP_NUMBER: "34640756947",   // Formato internacional sin + ni espacios.
-  PHONE_NUMBER: "+34 640 756 947",
-  EMAIL_ADDRESS: "smanojilcabrera@gmail.com",
-  FORM_ENDPOINT: "https://formsubmit.co/ajax/smanojilcabrera@gmail.com", // Las solicitudes llegan a este email (servicio FormSubmit).
+  WHATSAPP_NUMBER: "",              // Vacío = sin botones de WhatsApp (tu móvil no se publica). Formato: 34XXXXXXXXX
+  PHONE_NUMBER: "+34 928 377 750",  // Fijo de la oficina RE/MAX Lanzagorta (Juan Manuel Durán).
+  /* EMAIL CAMUFLADO: está escrito al revés para que los robots que buscan emails no lo encuentren.
+     Para cambiarlo, escribe tu nuevo email al revés (ej. "moc.liamg@nuevo"). */
+  EMAIL_AL_REVES: "moc.liamg@arerbacliojnams",
+  /* FormSubmit: cuando actives "Invisible emails", pega aquí la cadena aleatoria que te envían y el email dejará de usarse en el formulario. */
+  FORM_CODIGO: "",
   INSTAGRAM_URL: "https://www.instagram.com/manojil.realestate/",
   LINKEDIN_URL: "https://www.linkedin.com/in/sergio-ma%C3%B1ojil-cabrera-6573b9397/",
   TIKTOK_URL: "",                   // Pega aquí tu perfil de TikTok cuando lo tengas.
@@ -408,7 +411,7 @@ const CONFIG = {
   OFFICE_ADDRESS: "C/ Juan Manuel Durán González, 53, 35010 Las Palmas de Gran Canaria"
 };
 </script>
-<noscript><p style="padding:1rem;text-align:center;background:#FAF5EF">Para enviar el formulario necesitas activar JavaScript. También puedes llamarme al 640 756 947 o escribir a smanojilcabrera@gmail.com</p></noscript>
+<noscript><p style="padding:1rem;text-align:center;background:#FAF5EF">Para enviar el formulario necesitas activar JavaScript. También puedes llamar a la oficina de RE/MAX Lanzagorta al 928 377 750 y preguntar por mí</p></noscript>
 <a class="skip" href="#main">Saltar al contenido</a>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -585,7 +588,7 @@ const CONFIG = {
       <div class="acciones">
         <button type="button" class="btn btn-blanco" data-abrir="">Dejar mis datos <span class="flecha" aria-hidden="true">→</span></button>
         <a class="btn btn-borde-claro" data-wa="general"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
-        <a class="btn btn-borde-claro" data-tel><svg aria-hidden="true"><use href="#i-tel"/></svg>Llamar</a>
+        <a class="btn btn-borde-claro" data-tel><svg aria-hidden="true"><use href="#i-tel"/></svg>Llamar a la oficina</a>
       </div>
     </div>
   </div>
@@ -637,13 +640,13 @@ const CONFIG = {
       <details class="privacidad"><summary>Ver información de protección de datos</summary><ul data-privacidad></ul></details>
       <p class="err" id="f-err" role="alert" hidden></p>
       <button class="btn btn-vino" type="submit" id="f-btn">Enviar</button>
-      <p class="alternativa">¿Prefieres hablar ya? <a data-wa="general">Escríbeme por WhatsApp</a></p>
+      <p class="alternativa">¿Prefieres hablar ya? <a data-tel>Llama a la oficina</a></p>
     </form>
     <div class="ok" id="ok" role="status" hidden>
       <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
       <h3>¡Recibido, <span id="ok-n"></span>!</h3>
-      <p>Reviso tu caso y te contacto yo mismo por teléfono. Si te corre prisa, escríbeme por WhatsApp.</p>
-      <a class="btn btn-vino" data-wa="general"><svg aria-hidden="true"><use href="#i-wa"/></svg>Escribir por WhatsApp</a>
+      <p>Reviso tu caso y te contacto yo mismo. Si te corre prisa, llama a la oficina y pregunta por mí.</p>
+      <a class="btn btn-vino" data-tel><svg aria-hidden="true"><use href="#i-tel"/></svg>Llamar a la oficina</a>
       <button type="button" class="btn btn-borde" id="ok-cerrar">Cerrar</button>
     </div>
   </div>
@@ -652,6 +655,8 @@ const CONFIG = {
 <script>
 (function(){
   var C=CONFIG,$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))},id=function(x){return document.getElementById(x)};
+  C.EMAIL_ADDRESS=(C.EMAIL_AL_REVES||'').split('').reverse().join('');
+  C.FORM_ENDPOINT='https://formsubmit.co/ajax/'+(C.FORM_CODIGO||C.EMAIL_ADDRESS);
   var calma=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Datos de contacto ---------- */
@@ -685,12 +690,12 @@ const CONFIG = {
   "¿Hablamos?":"Shall we talk?","Cuéntame tu caso y te digo, sin rodeos, cómo lo haría yo. Te respondo personalmente.":"Tell me about your case and I'll tell you, straight up, how I'd handle it. I reply personally.","Dejar mis datos":"Leave my details","Llamar":"Call","Redes sociales":"Social media","Agente inmobiliario asociado · RE/MAX Lanzagorta · Gran Canaria":"Associate real estate agent · RE/MAX Lanzagorta · Gran Canaria","Protección de datos":"Data protection","Cada oficina RE/MAX es de propiedad y gestión independiente.":"Each RE/MAX office is independently owned and operated.","Pedir valoración o consulta":"Free valuation or enquiry","Escríbeme por WhatsApp":"Message me on WhatsApp","Cerrar":"Close",
   "Responsable:":"Data controller:","Sergio Mañojil Cabrera, agente inmobiliario asociado de RE/MAX Lanzagorta.":"Sergio Mañojil Cabrera, associate real estate agent at RE/MAX Lanzagorta.","Finalidad:":"Purpose:","atender tu solicitud y contactar contigo por teléfono, WhatsApp o email.":"to handle your request and contact you by phone, WhatsApp or email.","Legitimación:":"Legal basis:","tu consentimiento, que puedes retirar cuando quieras.":"your consent, which you can withdraw at any time.","Destinatarios:":"Recipients:","no se ceden a terceros, salvo obligación legal. Un proveedor técnico de formularios (FormSubmit) solo me hace llegar tu mensaje.":"not shared with third parties unless legally required. A technical form provider (FormSubmit) only delivers your message to me.","Conservación:":"Retention:","el tiempo necesario para atender tu solicitud.":"as long as needed to handle your request.","Derechos:":"Rights:",
   "Cuéntame qué necesitas":"Tell me what you need","Te respondo personalmente. Sin compromiso.":"I'll reply personally. No obligation.","Elige una opción y te respondo personalmente. Sin compromiso.":"Pick an option and I'll reply personally. No obligation.","Enviar":"Send","Enviando…":"Sending…","Vamos a vender tu vivienda":"Let's sell your home","Déjame tus datos y te preparo una valoración gratuita, sin compromiso.":"Leave your details and I'll prepare a free valuation, with no obligation.","Vamos a encontrar tu vivienda":"Let's find your home","Cuéntame qué buscas y te aviso de lo que encaje contigo.":"Tell me what you're looking for and I'll let you know what fits.","Empezar mi búsqueda":"Start my search","Vamos a alquilar tu vivienda":"Let's rent out your home","Te ayudo a encontrar inquilinos con perfil solvente y a hacerlo todo bien.":"I'll help you find reliable tenants and do everything right.","Quiero alquilar mi vivienda":"Rent out my home","Vamos a analizar tu inversión":"Let's analyse your investment","Cuéntame tu objetivo y lo vemos con números.":"Tell me your goal and we'll look at it with numbers.","Analizar mi inversión":"Analyse my investment",
-  "Nombre":"Name","Teléfono":"Phone","Email":"Email","(opcional)":"(optional)","Añadir detalles":"Add details","Comentarios":"Comments","Cualquier cosa que quieras contarme":"Anything you'd like to tell me","Acepto que Sergio me contacte con estos datos para atender mi solicitud.":"I agree that Sergio may contact me with these details to handle my request.","Ver información de protección de datos":"See data protection information","¿Prefieres hablar ya?":"Prefer to talk now?","¡Recibido,":"Got it,","Reviso tu caso y te contacto yo mismo por teléfono. Si te corre prisa, escríbeme por WhatsApp.":"I'll review your case and call you myself. If you're in a hurry, message me on WhatsApp.","Escribir por WhatsApp":"Message on WhatsApp",
+  "Nombre":"Name","Teléfono":"Phone","Email":"Email","(opcional)":"(optional)","Añadir detalles":"Add details","Comentarios":"Comments","Cualquier cosa que quieras contarme":"Anything you'd like to tell me","Acepto que Sergio me contacte con estos datos para atender mi solicitud.":"I agree that Sergio may contact me with these details to handle my request.","Ver información de protección de datos":"See data protection information","¿Prefieres hablar ya?":"Prefer to talk now?","¡Recibido,":"Got it,","Reviso tu caso y te contacto yo mismo por teléfono. Si te corre prisa, escríbeme por WhatsApp.":"I'll review your case and call you myself. If you're in a hurry, message me on WhatsApp.","Llamar a la oficina":"Call the office","Llama a la oficina":"Call the office","Reviso tu caso y te contacto yo mismo. Si te corre prisa, llama a la oficina y pregunta por mí.":"I'll review your case and contact you myself. If you're in a hurry, call the office and ask for me.",
   "Elige arriba qué necesitas: vender, comprar, alquilar o invertir.":"Choose above what you need: sell, buy, rent or invest.","Necesito tu nombre y un teléfono válido para llamarte.":"I need your name and a valid phone number to call you.","Revisa el email o déjalo en blanco.":"Check the email or leave it blank.","Marca la casilla para que pueda contactarte.":"Tick the box so I can contact you.",
   "Tipo de inmueble":"Property type","Municipio":"Municipality","Barrio o calle aproximada":"Neighbourhood or approximate street","Superficie (m²)":"Size (m²)","Habitaciones":"Bedrooms","¿Cuándo te gustaría vender?":"When would you like to sell?","Precio que tienes en mente (€)":"Price you have in mind (€)","Zonas que te interesan":"Areas you're interested in","Presupuesto máximo (€)":"Maximum budget (€)","Habitaciones (mínimo)":"Bedrooms (minimum)","Financiación":"Financing","¿Cuándo quieres comprar?":"When do you want to buy?","¿Está amueblada?":"Is it furnished?","¿Cuándo estaría disponible?":"When would it be available?","Renta que tienes en mente (€/mes)":"Rent you have in mind (€/month)","Presupuesto (€)":"Budget (€)","Objetivo":"Goal","¿Cuándo quieres invertir?":"When do you want to invest?",
   "Sin indicar":"Not specified","Piso":"Flat","Ático":"Penthouse","Dúplex":"Duplex","Casa / chalet":"House / villa","Local comercial":"Commercial premises","Suelo / terreno":"Land / plot","Finca":"Rural estate (finca)","Garaje / trastero":"Garage / storage room","Edificio":"Building","Otro":"Other","Fondos propios":"Own funds","Necesito hipoteca":"I need a mortgage","Ya tengo hipoteca aprobada":"Mortgage already approved","Aún no lo sé":"Not sure yet","Lo antes posible":"As soon as possible","En 1-3 meses":"In 1-3 months","En 3-6 meses":"In 3-6 months","Más adelante":"Later on","Solo quiero informarme":"Just finding out","Sí":"Yes","Parcialmente":"Partly","Ya":"Now","Alquiler de larga duración":"Long-term rental","Alquiler vacacional":"Holiday rental","Reforma y venta":"Renovate and sell","Patrimonio a largo plazo":"Long-term wealth","Lo estoy valorando":"Still deciding"};
   D['acceso, rectificación, supresión, oposición, limitación y portabilidad, escribiendo a '+C.EMAIL_ADDRESS+'. Puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).']='access, rectification, erasure, objection, restriction and portability, by writing to '+C.EMAIL_ADDRESS+'. You can lodge a complaint with the Spanish Data Protection Agency (aepd.es).';
-  D['No se ha podido enviar. Escríbeme por WhatsApp o llámame al '+C.PHONE_NUMBER+'.']="It couldn't be sent. Message me on WhatsApp or call me on "+C.PHONE_NUMBER+'.';
+  D['No se ha podido enviar. Llama a la oficina al '+C.PHONE_NUMBER+' y pregunta por mí.']="It couldn't be sent. Call the office on "+C.PHONE_NUMBER+' and ask for me.';
   function nz(x){return x.replace(/\s+/g,' ').trim()}
   function trn(es,nodo){if(LG!=='en')return es;var p=nodo&&nodo.parentNode;if(p&&p.dataset&&p.dataset.en)return p.dataset.en;var v=D[nz(es)];if(v==null)return es;return es.match(/^\s*/)[0]+v+es.match(/\s*$/)[0]}
   function applyLang(raiz){raiz=raiz||document.body;
@@ -778,7 +783,9 @@ const CONFIG = {
     L(hoja);
   }
   $('button',seg).forEach(function(b){b.addEventListener('click',function(){elegir(b.dataset.k)})});
+  var t0=0;
   function abrir(k){
+    t0=Date.now();
     form.hidden=false;ok.hidden=true;err.hidden=true;elegir(k);
     document.documentElement.classList.add('lock');
     hoja.classList.remove('cerrando');
@@ -821,8 +828,9 @@ const CONFIG = {
     var nombre=n.value.trim();
     function bloquear(on){enviando=on;btn.disabled=on;btn.textContent=on?'Enviando…':T[cur].b;L(btn)}
     function hecho(){bloquear(false);form.reset();$('[aria-invalid]',form).forEach(function(x){x.removeAttribute('aria-invalid')});id('mas').open=false;id('ok-n').textContent=nombre;form.hidden=true;ok.hidden=false;L(ok);hoja.querySelector('.hoja-cuerpo').scrollTop=0}
-    function fallo(){bloquear(false);err.textContent='No se ha podido enviar. Escríbeme por WhatsApp o llámame al '+C.PHONE_NUMBER+'.';err.hidden=false;L(err)}
-    if(id('f-hp').value){hecho();return}
+    function fallo(){bloquear(false);err.textContent='No se ha podido enviar. Llama a la oficina al '+C.PHONE_NUMBER+' y pregunta por mí.';err.hidden=false;L(err)}
+    // Antirrobots: campo trampa relleno o envío en menos de 3 s (ningún humano es tan rápido) = se descarta en silencio
+    if(id('f-hp').value||Date.now()-t0<3000){hecho();return}
     bloquear(true);
     fetch(C.FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({_subject:'Nueva solicitud web: '+T[cur].t,_template:'table',_honey:'',interes:cur,nombre:nombre,telefono:vT,email:vM||'(no indicado)',mensaje:txt,origen:origen,consentimiento:true})})
       .then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||j.success===false||j.success==='false')throw 0;hecho()})})

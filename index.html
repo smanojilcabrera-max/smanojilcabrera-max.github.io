@@ -370,13 +370,13 @@ dialog.hoja.cerrando::backdrop{animation:fundir .32s ease reverse both}
 @media(min-width:900px){.ofi .wrap{grid-template-columns:.85fr 1.15fr;gap:4rem}.mapa{aspect-ratio:16/11}}
 /* Foto de la oficina en contacto, con fundido */
 .caja-foto{position:absolute;left:0;right:0;top:0;height:260px;z-index:-1;-webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 45%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.55) 45%,transparent 100%)}
-.caja-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;opacity:.3;filter:saturate(.65) contrast(1.05);transform:scale(1.1);will-change:transform}
+.caja-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 37%;opacity:.45;filter:saturate(.65) contrast(1.05);transform:scale(1.1);will-change:transform}
 .caja{padding-top:150px}
 @media(min-width:900px){
   .caja{padding-top:clamp(1.8rem,6vw,3.5rem)}
   .caja>:not(.caja-foto){max-width:58%}
-  .caja-foto{left:auto;width:46%;height:auto;bottom:0;-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.6) 35%,#000 100%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.6) 35%,#000 100%)}
-  .caja-foto img{object-position:50% 28%;opacity:.42}
+  .caja-foto{left:auto;width:46%;height:auto;bottom:0;-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.75) 25%,#000 60%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.75) 25%,#000 60%)}
+  .caja-foto img{object-position:50% 28%;opacity:.68;filter:saturate(.85) contrast(1.05)}
 }
 @media(prefers-reduced-motion:reduce){.cinta-pista,.girar{animation:none!important}.cara.frente img,.caja-foto img{transform:none}}
 
@@ -658,9 +658,9 @@ const CONFIG = {
       <label>Nombre<input id="f-nombre" name="nombre" required autocomplete="given-name" enterkeyhint="next"></label>
       <div class="fila">
         <label>Teléfono<input id="f-tel" name="tel" required type="tel" inputmode="tel" autocomplete="tel" enterkeyhint="next"></label>
-        <label><span>Email <small>(opcional)</small></span><input id="f-mail" name="email" type="email" inputmode="email" autocomplete="email" enterkeyhint="next"></label>
+        <label>Email<input id="f-mail" name="email" required type="email" inputmode="email" autocomplete="email" enterkeyhint="next"></label>
       </div>
-      <details class="mas" id="mas"><summary>Añadir detalles <small>(opcional)</small></summary><div class="campos"><div class="campos" id="campos" style="padding:0"></div><label>Comentarios<textarea id="f-com" name="comentarios" rows="3" placeholder="Cualquier cosa que quieras contarme"></textarea></label></div></details>
+      <details class="mas" id="mas"><summary>Añadir detalles <small>(recomendable)</small></summary><div class="campos"><div class="campos" id="campos" style="padding:0"></div><label>Comentarios<textarea id="f-com" name="comentarios" rows="3" placeholder="Cualquier cosa que quieras contarme"></textarea></label></div></details>
       <label class="chk" id="chk-l"><input type="checkbox" id="f-ok" required><span>Acepto que Sergio me contacte con estos datos para atender mi solicitud.</span></label>
       <details class="privacidad"><summary>Ver información de protección de datos</summary><ul data-privacidad></ul></details>
       <p class="err" id="f-err" role="alert" hidden></p>
@@ -718,7 +718,7 @@ const CONFIG = {
   "Responsable:":"Data controller:","Finalidad:":"Purpose:","atender tu solicitud y contactar contigo por teléfono, WhatsApp o email.":"to handle your request and contact you by phone, WhatsApp or email.","Legitimación:":"Legal basis:","tu consentimiento, que puedes retirar cuando quieras.":"your consent, which you can withdraw at any time.","Destinatarios:":"Recipients:","no se ceden a terceros, salvo obligación legal. Un proveedor técnico de formularios (FormSubmit) solo me hace llegar tu mensaje.":"not shared with third parties unless legally required. A technical form provider (FormSubmit) only delivers your message to me.","Conservación:":"Retention:","el tiempo necesario para atender tu solicitud.":"as long as needed to handle your request.","Derechos:":"Rights:",
   "Cuéntame qué necesitas":"Tell me what you need","Te respondo personalmente. Sin compromiso.":"I'll reply personally. No obligation.","Elige una opción y te respondo personalmente. Sin compromiso.":"Pick an option and I'll reply personally. No obligation.","Enviar":"Send","Enviando…":"Sending…","Vamos a vender tu vivienda":"Let's sell your home","Vamos a encontrar tu vivienda":"Let's find your home","Cuéntame qué buscas y te aviso de lo que encaje contigo.":"Tell me what you're looking for and I'll let you know what fits.","Empezar mi búsqueda":"Start my search","Vamos a alquilar tu vivienda":"Let's rent out your home","Te ayudo a encontrar inquilinos con perfil solvente y a hacerlo todo bien.":"I'll help you find reliable tenants and do everything right.","Quiero alquilar mi vivienda":"Rent out my home","Vamos a analizar tu inversión":"Let's analyse your investment","Cuéntame tu objetivo y lo vemos con números.":"Tell me your goal and we'll look at it with numbers.","Analizar mi inversión":"Analyse my investment",
   "Nombre":"Name","Teléfono":"Phone","Email":"Email","(opcional)":"(optional)","Añadir detalles":"Add details","Comentarios":"Comments","Cualquier cosa que quieras contarme":"Anything you'd like to tell me","Acepto que Sergio me contacte con estos datos para atender mi solicitud.":"I agree that Sergio may contact me with these details to handle my request.","Ver información de protección de datos":"See data protection information","¿Prefieres hablar ya?":"Prefer to talk now?","¡Recibido,":"Got it,","Reviso tu caso y te contacto yo mismo por teléfono. Si te corre prisa, escríbeme por WhatsApp.":"I'll review your case and call you myself. If you're in a hurry, message me on WhatsApp.","Escríbeme un email":"Email me","¿Solo tienes una duda?":"Just a quick question?","Reviso tu caso y te contacto yo mismo lo antes posible.":"I'll review your case and contact you myself as soon as possible.",
-  "Necesito tu nombre y un teléfono válido para llamarte.":"I need your name and a valid phone number to call you.","Revisa el email o déjalo en blanco.":"Check the email or leave it blank.","Marca la casilla para que pueda contactarte.":"Tick the box so I can contact you.",
+  "Necesito tu nombre y un teléfono válido para llamarte.":"I need your name and a valid phone number to call you.","Necesito un email válido para enviarte la información.":"I need a valid email to send you the information.","(recomendable)":"(recommended)","Marca la casilla para que pueda contactarte.":"Tick the box so I can contact you.",
   "Tipo de inmueble":"Property type","Municipio":"Municipality","Barrio o calle aproximada":"Neighbourhood or approximate street","Superficie (m²)":"Size (m²)","Habitaciones":"Bedrooms","¿Cuándo te gustaría vender?":"When would you like to sell?","Precio que tienes en mente (€)":"Price you have in mind (€)","Zonas que te interesan":"Areas you're interested in","Presupuesto máximo (€)":"Maximum budget (€)","Habitaciones (mínimo)":"Bedrooms (minimum)","Financiación":"Financing","¿Cuándo quieres comprar?":"When do you want to buy?","¿Está amueblada?":"Is it furnished?","¿Cuándo estaría disponible?":"When would it be available?","Renta que tienes en mente (€/mes)":"Rent you have in mind (€/month)","Presupuesto (€)":"Budget (€)","Objetivo":"Goal","¿Cuándo quieres invertir?":"When do you want to invest?",
   "Sin indicar":"Not specified","Piso":"Flat","Ático":"Penthouse","Dúplex":"Duplex","Casa / chalet":"House / villa","Local comercial":"Commercial premises","Suelo / terreno":"Land / plot","Finca":"Rural estate (finca)","Garaje / trastero":"Garage / storage room","Edificio":"Building","Otro":"Other","Fondos propios":"Own funds","Necesito hipoteca":"I need a mortgage","Ya tengo hipoteca aprobada":"Mortgage already approved","Aún no lo sé":"Not sure yet","Lo antes posible":"As soon as possible","En 1-3 meses":"In 1-3 months","En 3-6 meses":"In 3-6 months","Más adelante":"Later on","Solo quiero informarme":"Just finding out","Sí":"Yes","Parcialmente":"Partly","Ya":"Now","Alquiler de larga duración":"Long-term rental","Alquiler vacacional":"Holiday rental","Reforma y venta":"Renovate and sell","Patrimonio a largo plazo":"Long-term wealth","Lo estoy valorando":"Still deciding"};
   D['acceso, rectificación, supresión, oposición, limitación y portabilidad, escribiendo a '+C.EMAIL_ADDRESS+'. Puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).']='access, rectification, erasure, objection, restriction and portability, by writing to '+C.EMAIL_ADDRESS+'. You can lodge a complaint with the Spanish Data Protection Agency (aepd.es).';
@@ -846,15 +846,15 @@ const CONFIG = {
     var vT=t.value.trim(),vM=m.value.trim();
     marcar(n,!n.value.trim());if(!n.value.trim())mal.push(n);
     var telMal=!/^[+0-9 ().\-]{9,20}$/.test(vT);marcar(t,telMal);if(telMal)mal.push(t);
-    var mailMal=vM&&!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(vM);marcar(m,mailMal);if(mailMal)mal.push(m);
+    var mailMal=!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(vM);marcar(m,mailMal);if(mailMal)mal.push(m);
     id('chk-l').classList.toggle('error',!c.checked);if(!c.checked)mal.push(c);
     if(!cur){seg.classList.add('error');mal.unshift(seg.querySelector('button'))}
-    if(mal.length){var faltan=!n.value.trim()||telMal;err.textContent=!cur?'Elige arriba qué necesitas.':(faltan?'Necesito tu nombre y un teléfono válido para llamarte.':(mailMal?'Revisa el email o déjalo en blanco.':'Marca la casilla para que pueda contactarte.'));err.hidden=false;L(err);mal[0].focus();return}
+    if(mal.length){var faltan=!n.value.trim()||telMal;err.textContent=!cur?'Elige arriba qué necesitas.':(faltan?'Necesito tu nombre y un teléfono válido para llamarte.':(mailMal?'Necesito un email válido para enviarte la información.':'Marca la casilla para que pueda contactarte.'));err.hidden=false;L(err);mal[0].focus();return}
     err.hidden=true;
     var lineas=[];$('[data-f]',campos).forEach(function(x){var v=x.value.trim();if(v)lineas.push('• '+x.dataset.f+': '+v)});
     var com=id('f-com')?id('f-com').value.trim():'';
     var origen=new URLSearchParams(location.search).get('src')||'directo';
-    var txt='Solicitud web: quiero '+T[cur].x+'.\n\n• Nombre: '+n.value.trim()+'\n• Teléfono: '+vT+(vM?'\n• Email: '+vM:'')+(lineas.length?'\n'+lineas.join('\n'):'')+(com?'\n• Comentarios: '+com:'')+'\n• Origen: '+origen;
+    var txt='Solicitud web: quiero '+T[cur].x+'.\n\n• Nombre: '+n.value.trim()+'\n• Teléfono: '+vT+'\n• Email: '+vM+(lineas.length?'\n'+lineas.join('\n'):'')+(com?'\n• Comentarios: '+com:'')+'\n• Origen: '+origen;
     var nombre=n.value.trim();
     function bloquear(on){enviando=on;btn.disabled=on;btn.textContent=on?'Enviando…':T[cur].b;L(btn)}
     function hecho(){bloquear(false);form.reset();$('[aria-invalid]',form).forEach(function(x){x.removeAttribute('aria-invalid')});id('mas').open=false;id('ok-n').textContent=nombre;form.hidden=true;ok.hidden=false;L(ok);hoja.querySelector('.hoja-cuerpo').scrollTop=0}
@@ -862,7 +862,7 @@ const CONFIG = {
     // Antirrobots: campo trampa relleno o envío en menos de 3 s (ningún humano es tan rápido) = se descarta en silencio
     if(id('f-hp').value||Date.now()-t0<3000){hecho();return}
     bloquear(true);
-    fetch(C.FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({_subject:'Nueva solicitud web: '+T[cur].t,_template:'table',_honey:'',interes:cur,nombre:nombre,telefono:vT,email:vM||'(no indicado)',mensaje:txt,origen:origen,consentimiento:true})})
+    fetch(C.FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({_subject:'Nueva solicitud web: '+T[cur].t,_template:'table',_honey:'',interes:cur,nombre:nombre,telefono:vT,email:vM,mensaje:txt,origen:origen,consentimiento:true})})
       .then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||j.success===false||j.success==='false')throw 0;hecho()})})
       .catch(fallo);
   });

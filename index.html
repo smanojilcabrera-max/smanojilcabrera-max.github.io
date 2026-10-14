@@ -22,7 +22,7 @@
 <!-- Icono de la pestaña: la ñ de marca -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237A1E22'/%3E%3Cpath d='M17 22 C23 14, 29 14, 33 19 S 43 24, 48 16' fill='none' stroke='%23D4B26A' stroke-width='4.5' stroke-linecap='round'/%3E%3Cpath d='M21 52 V30 M21 37 C21 31, 26 28, 32 28 S 43 31, 43 38 V52' fill='none' stroke='%23fff' stroke-width='7.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="img/sergio-avatar.jpg">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"RealEstateAgent","name":"Sergio Mañojil Cabrera","alternateName":"Sergio Mañojil","description":"Agente inmobiliario en RE/MAX Lanzagorta. Venta, compra, alquiler e inversión inmobiliaria en Gran Canaria.","url":"https://smanojilcabrera-max.github.io/web-sergio/","telephone":"+34 928 377 750","areaServed":"Gran Canaria","parentOrganization":{"@type":"Organization","name":"RE/MAX Lanzagorta"},"address":{"@type":"PostalAddress","streetAddress":"C/ Juan Manuel Durán González, 53","postalCode":"35010","addressLocality":"Las Palmas de Gran Canaria","addressCountry":"ES"},"sameAs":["https://www.instagram.com/manojil.realestate/","https://www.linkedin.com/in/sergio-ma%C3%B1ojil-cabrera-6573b9397/"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"RealEstateAgent","name":"Sergio Mañojil Cabrera","alternateName":"Sergio Mañojil","description":"Agente inmobiliario en RE/MAX Lanzagorta. Venta, compra, alquiler e inversión inmobiliaria en Gran Canaria.","url":"https://smanojilcabrera-max.github.io/web-sergio/","areaServed":"Gran Canaria","parentOrganization":{"@type":"Organization","name":"RE/MAX Lanzagorta"},"address":{"@type":"PostalAddress","streetAddress":"C/ Juan Manuel Durán González, 53","postalCode":"35010","addressLocality":"Las Palmas de Gran Canaria","addressCountry":"ES"},"sameAs":["https://www.instagram.com/manojil.realestate/","https://www.linkedin.com/in/sergio-ma%C3%B1ojil-cabrera-6573b9397/"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -214,7 +214,7 @@ section{padding:clamp(3.2rem,8vw,5.5rem) 0}
 .caja h2{color:#fff;font-size:clamp(2.4rem,9vw,3.6rem);margin-bottom:.8rem}
 .caja .lead{color:var(--sobre-vino);margin-bottom:1.8rem;max-width:34rem}
 .caja .acciones{display:flex;flex-wrap:wrap;gap:.7rem}
-@media(max-width:559px){.caja .acciones .btn{flex:1 1 calc(50% - .35rem)}.caja .acciones .btn:first-child{flex-basis:100%}}
+@media(max-width:559px){.caja .acciones .btn{flex:1 1 100%}}
 .oficina{margin-top:1.8rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.18);display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;align-items:center;font-size:.92rem;color:var(--sobre-vino);font-weight:600}
 .oficina b{color:#fff}
 .oficina a{color:var(--oro);font-weight:800;text-underline-offset:3px;display:inline-flex;align-items:center;min-height:44px}
@@ -396,7 +396,7 @@ dialog.hoja.cerrando::backdrop{animation:fundir .32s ease reverse both}
    ===================================================================== */
 const CONFIG = {
   WHATSAPP_NUMBER: "",              // Vacío = sin botones de WhatsApp (tu móvil no se publica). Formato: 34XXXXXXXXX
-  PHONE_NUMBER: "+34 928 377 750",  // Fijo de la oficina RE/MAX Lanzagorta (Juan Manuel Durán).
+  PHONE_NUMBER: "",                 // Vacío = sin botones de llamar. Fijo de la oficina, por si lo quieres volver a poner: +34 928 377 750
   /* EMAIL CAMUFLADO: está escrito al revés para que los robots que buscan emails no lo encuentren.
      Para cambiarlo, escribe tu nuevo email al revés (ej. "moc.liamg@nuevo"). */
   EMAIL_AL_REVES: "moc.liamg@arerbacliojnams",
@@ -411,7 +411,7 @@ const CONFIG = {
   OFFICE_ADDRESS: "C/ Juan Manuel Durán González, 53, 35010 Las Palmas de Gran Canaria"
 };
 </script>
-<noscript><p style="padding:1rem;text-align:center;background:#FAF5EF">Para enviar el formulario necesitas activar JavaScript. También puedes llamar a la oficina de RE/MAX Lanzagorta al 928 377 750 y preguntar por mí</p></noscript>
+<noscript><p style="padding:1rem;text-align:center;background:#FAF5EF">Para enviar el formulario necesitas activar JavaScript en tu navegador.</p></noscript>
 <a class="skip" href="#main">Saltar al contenido</a>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -422,6 +422,7 @@ const CONFIG = {
   <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z"/></symbol>
   <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M8.5 11h7M8.5 14h4"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
   <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/></symbol>
   <symbol id="i-in" viewBox="0 0 24 24"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75Zm7 0h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.9c0-1.17-.02-2.68-1.63-2.68-1.64 0-1.89 1.28-1.89 2.6V21H10V9.75Z"/></symbol>
@@ -588,7 +589,7 @@ const CONFIG = {
       <div class="acciones">
         <button type="button" class="btn btn-blanco" data-abrir="">Dejar mis datos <span class="flecha" aria-hidden="true">→</span></button>
         <a class="btn btn-borde-claro" data-wa="general"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
-        <a class="btn btn-borde-claro" data-tel><svg aria-hidden="true"><use href="#i-tel"/></svg>Llamar a la oficina</a>
+        <a class="btn btn-borde-claro" href="#" data-mail><svg aria-hidden="true"><use href="#i-mail"/></svg>Escríbeme un email</a>
       </div>
     </div>
   </div>
@@ -640,13 +641,12 @@ const CONFIG = {
       <details class="privacidad"><summary>Ver información de protección de datos</summary><ul data-privacidad></ul></details>
       <p class="err" id="f-err" role="alert" hidden></p>
       <button class="btn btn-vino" type="submit" id="f-btn">Enviar</button>
-      <p class="alternativa">¿Prefieres hablar ya? <a data-tel>Llama a la oficina</a></p>
+      <p class="alternativa">¿Solo tienes una duda? <a href="#" data-mail>Escríbeme un email</a></p>
     </form>
     <div class="ok" id="ok" role="status" hidden>
       <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></div>
       <h3>¡Recibido, <span id="ok-n"></span>!</h3>
-      <p>Reviso tu caso y te contacto yo mismo. Si te corre prisa, llama a la oficina y pregunta por mí.</p>
-      <a class="btn btn-vino" data-tel><svg aria-hidden="true"><use href="#i-tel"/></svg>Llamar a la oficina</a>
+      <p>Reviso tu caso y te contacto yo mismo lo antes posible.</p>
       <button type="button" class="btn btn-borde" id="ok-cerrar">Cerrar</button>
     </div>
   </div>
@@ -666,6 +666,8 @@ const CONFIG = {
   function refrescarWA(){if(!wa)return;$('[data-wa]').forEach(function(a){a.href=waUrl(a.dataset.wa==='general'&&a.closest('#hoja')?(cur||'general'):a.dataset.wa)})}
   $('[data-wa]').forEach(function(a){if(!wa){a.hidden=true;return}a.href=waUrl(a.dataset.wa);a.target='_blank';a.rel='noopener'});
   $('[data-tel]').forEach(function(a){if(!C.PHONE_NUMBER){a.hidden=true;return}a.href='tel:'+C.PHONE_NUMBER.replace(/\s/g,'')});
+  // El email solo se compone al pulsar: así no aparece en el código de la página
+  $('[data-mail]').forEach(function(a){if(!C.EMAIL_ADDRESS){a.hidden=true;return}a.addEventListener('click',function(e){e.preventDefault();location.href='mailto:'+C.EMAIL_ADDRESS+'?subject='+encodeURIComponent(LG==='en'?'Question from your website':'Consulta desde tu web')})});
   $('[data-href]').forEach(function(a){var v=C[a.dataset.href];v?a.setAttribute('href',v):a.hidden=true});
   $('[data-oficina]').forEach(function(x){x.textContent=C.OFFICE_ADDRESS});
   id('como-llegar').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(C.OFFICE_NAME+' '+C.OFFICE_ADDRESS);
@@ -690,12 +692,12 @@ const CONFIG = {
   "¿Hablamos?":"Shall we talk?","Cuéntame tu caso y te digo, sin rodeos, cómo lo haría yo. Te respondo personalmente.":"Tell me about your case and I'll tell you, straight up, how I'd handle it. I reply personally.","Dejar mis datos":"Leave my details","Llamar":"Call","Redes sociales":"Social media","Agente inmobiliario asociado · RE/MAX Lanzagorta · Gran Canaria":"Associate real estate agent · RE/MAX Lanzagorta · Gran Canaria","Protección de datos":"Data protection","Cada oficina RE/MAX es de propiedad y gestión independiente.":"Each RE/MAX office is independently owned and operated.","Pedir valoración o consulta":"Free valuation or enquiry","Escríbeme por WhatsApp":"Message me on WhatsApp","Cerrar":"Close",
   "Responsable:":"Data controller:","Sergio Mañojil Cabrera, agente inmobiliario asociado de RE/MAX Lanzagorta.":"Sergio Mañojil Cabrera, associate real estate agent at RE/MAX Lanzagorta.","Finalidad:":"Purpose:","atender tu solicitud y contactar contigo por teléfono, WhatsApp o email.":"to handle your request and contact you by phone, WhatsApp or email.","Legitimación:":"Legal basis:","tu consentimiento, que puedes retirar cuando quieras.":"your consent, which you can withdraw at any time.","Destinatarios:":"Recipients:","no se ceden a terceros, salvo obligación legal. Un proveedor técnico de formularios (FormSubmit) solo me hace llegar tu mensaje.":"not shared with third parties unless legally required. A technical form provider (FormSubmit) only delivers your message to me.","Conservación:":"Retention:","el tiempo necesario para atender tu solicitud.":"as long as needed to handle your request.","Derechos:":"Rights:",
   "Cuéntame qué necesitas":"Tell me what you need","Te respondo personalmente. Sin compromiso.":"I'll reply personally. No obligation.","Elige una opción y te respondo personalmente. Sin compromiso.":"Pick an option and I'll reply personally. No obligation.","Enviar":"Send","Enviando…":"Sending…","Vamos a vender tu vivienda":"Let's sell your home","Déjame tus datos y te preparo una valoración gratuita, sin compromiso.":"Leave your details and I'll prepare a free valuation, with no obligation.","Vamos a encontrar tu vivienda":"Let's find your home","Cuéntame qué buscas y te aviso de lo que encaje contigo.":"Tell me what you're looking for and I'll let you know what fits.","Empezar mi búsqueda":"Start my search","Vamos a alquilar tu vivienda":"Let's rent out your home","Te ayudo a encontrar inquilinos con perfil solvente y a hacerlo todo bien.":"I'll help you find reliable tenants and do everything right.","Quiero alquilar mi vivienda":"Rent out my home","Vamos a analizar tu inversión":"Let's analyse your investment","Cuéntame tu objetivo y lo vemos con números.":"Tell me your goal and we'll look at it with numbers.","Analizar mi inversión":"Analyse my investment",
-  "Nombre":"Name","Teléfono":"Phone","Email":"Email","(opcional)":"(optional)","Añadir detalles":"Add details","Comentarios":"Comments","Cualquier cosa que quieras contarme":"Anything you'd like to tell me","Acepto que Sergio me contacte con estos datos para atender mi solicitud.":"I agree that Sergio may contact me with these details to handle my request.","Ver información de protección de datos":"See data protection information","¿Prefieres hablar ya?":"Prefer to talk now?","¡Recibido,":"Got it,","Reviso tu caso y te contacto yo mismo por teléfono. Si te corre prisa, escríbeme por WhatsApp.":"I'll review your case and call you myself. If you're in a hurry, message me on WhatsApp.","Llamar a la oficina":"Call the office","Llama a la oficina":"Call the office","Reviso tu caso y te contacto yo mismo. Si te corre prisa, llama a la oficina y pregunta por mí.":"I'll review your case and contact you myself. If you're in a hurry, call the office and ask for me.",
+  "Nombre":"Name","Teléfono":"Phone","Email":"Email","(opcional)":"(optional)","Añadir detalles":"Add details","Comentarios":"Comments","Cualquier cosa que quieras contarme":"Anything you'd like to tell me","Acepto que Sergio me contacte con estos datos para atender mi solicitud.":"I agree that Sergio may contact me with these details to handle my request.","Ver información de protección de datos":"See data protection information","¿Prefieres hablar ya?":"Prefer to talk now?","¡Recibido,":"Got it,","Reviso tu caso y te contacto yo mismo por teléfono. Si te corre prisa, escríbeme por WhatsApp.":"I'll review your case and call you myself. If you're in a hurry, message me on WhatsApp.","Escríbeme un email":"Email me","¿Solo tienes una duda?":"Just a quick question?","Reviso tu caso y te contacto yo mismo lo antes posible.":"I'll review your case and contact you myself as soon as possible.",
   "Elige arriba qué necesitas: vender, comprar, alquilar o invertir.":"Choose above what you need: sell, buy, rent or invest.","Necesito tu nombre y un teléfono válido para llamarte.":"I need your name and a valid phone number to call you.","Revisa el email o déjalo en blanco.":"Check the email or leave it blank.","Marca la casilla para que pueda contactarte.":"Tick the box so I can contact you.",
   "Tipo de inmueble":"Property type","Municipio":"Municipality","Barrio o calle aproximada":"Neighbourhood or approximate street","Superficie (m²)":"Size (m²)","Habitaciones":"Bedrooms","¿Cuándo te gustaría vender?":"When would you like to sell?","Precio que tienes en mente (€)":"Price you have in mind (€)","Zonas que te interesan":"Areas you're interested in","Presupuesto máximo (€)":"Maximum budget (€)","Habitaciones (mínimo)":"Bedrooms (minimum)","Financiación":"Financing","¿Cuándo quieres comprar?":"When do you want to buy?","¿Está amueblada?":"Is it furnished?","¿Cuándo estaría disponible?":"When would it be available?","Renta que tienes en mente (€/mes)":"Rent you have in mind (€/month)","Presupuesto (€)":"Budget (€)","Objetivo":"Goal","¿Cuándo quieres invertir?":"When do you want to invest?",
   "Sin indicar":"Not specified","Piso":"Flat","Ático":"Penthouse","Dúplex":"Duplex","Casa / chalet":"House / villa","Local comercial":"Commercial premises","Suelo / terreno":"Land / plot","Finca":"Rural estate (finca)","Garaje / trastero":"Garage / storage room","Edificio":"Building","Otro":"Other","Fondos propios":"Own funds","Necesito hipoteca":"I need a mortgage","Ya tengo hipoteca aprobada":"Mortgage already approved","Aún no lo sé":"Not sure yet","Lo antes posible":"As soon as possible","En 1-3 meses":"In 1-3 months","En 3-6 meses":"In 3-6 months","Más adelante":"Later on","Solo quiero informarme":"Just finding out","Sí":"Yes","Parcialmente":"Partly","Ya":"Now","Alquiler de larga duración":"Long-term rental","Alquiler vacacional":"Holiday rental","Reforma y venta":"Renovate and sell","Patrimonio a largo plazo":"Long-term wealth","Lo estoy valorando":"Still deciding"};
   D['acceso, rectificación, supresión, oposición, limitación y portabilidad, escribiendo a '+C.EMAIL_ADDRESS+'. Puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).']='access, rectification, erasure, objection, restriction and portability, by writing to '+C.EMAIL_ADDRESS+'. You can lodge a complaint with the Spanish Data Protection Agency (aepd.es).';
-  D['No se ha podido enviar. Llama a la oficina al '+C.PHONE_NUMBER+' y pregunta por mí.']="It couldn't be sent. Call the office on "+C.PHONE_NUMBER+' and ask for me.';
+  D['No se ha podido enviar. Inténtalo de nuevo en un momento o escríbeme un email desde el botón de contacto.']="It couldn't be sent. Please try again in a moment or email me using the contact button.";
   function nz(x){return x.replace(/\s+/g,' ').trim()}
   function trn(es,nodo){if(LG!=='en')return es;var p=nodo&&nodo.parentNode;if(p&&p.dataset&&p.dataset.en)return p.dataset.en;var v=D[nz(es)];if(v==null)return es;return es.match(/^\s*/)[0]+v+es.match(/\s*$/)[0]}
   function applyLang(raiz){raiz=raiz||document.body;
@@ -828,7 +830,7 @@ const CONFIG = {
     var nombre=n.value.trim();
     function bloquear(on){enviando=on;btn.disabled=on;btn.textContent=on?'Enviando…':T[cur].b;L(btn)}
     function hecho(){bloquear(false);form.reset();$('[aria-invalid]',form).forEach(function(x){x.removeAttribute('aria-invalid')});id('mas').open=false;id('ok-n').textContent=nombre;form.hidden=true;ok.hidden=false;L(ok);hoja.querySelector('.hoja-cuerpo').scrollTop=0}
-    function fallo(){bloquear(false);err.textContent='No se ha podido enviar. Llama a la oficina al '+C.PHONE_NUMBER+' y pregunta por mí.';err.hidden=false;L(err)}
+    function fallo(){bloquear(false);err.textContent='No se ha podido enviar. Inténtalo de nuevo en un momento o escríbeme un email desde el botón de contacto.';err.hidden=false;L(err)}
     // Antirrobots: campo trampa relleno o envío en menos de 3 s (ningún humano es tan rápido) = se descarta en silencio
     if(id('f-hp').value||Date.now()-t0<3000){hecho();return}
     bloquear(true);
